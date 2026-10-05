@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { transformGzipBase64, type CompressionMode } from '../core';
+import { InfoCallout } from '../../../components/InfoCallout';
+import { SystemStatus } from '../../../components/SystemStatus';
 import { ControlPanel } from './widgets/ControlPanel';
 import { Input } from './widgets/Input';
 import { Output } from './widgets/Output';
@@ -80,8 +82,8 @@ export function View() {
       <div className="gzip-title-row"><div><div className="gzip-eyebrow">COMPRESSION TOOL</div><h1>Gzip (+ Base64)</h1><p>Compress text to Gzip encoded as standard Base64, or decode it back.</p></div></div>
       <ControlPanel mode={mode} busy={busy} onModeChange={changeMode} onConvert={convert} />
       <div className="gzip-editor-grid"><Input mode={mode} value={input} onChange={changeInput} onClear={clear} /><Output mode={mode} value={output} error={error} busy={busy} copied={copied} onCopy={copyOutput} /></div>
-      <div className="gzip-tip"><span>✦</span><div><strong>Standard Gzip + Base64</strong><p>Compression runs locally. Output is Base64 of Gzip-compressed UTF-8 bytes.</p></div></div>
+      <InfoCallout title="Standard Gzip + Base64">Compression runs locally. Output is Base64 of Gzip-compressed UTF-8 bytes.</InfoCallout>
     </main>
-    <footer className="gzip-footer"><span><i /> ALL SYSTEMS OPERATIONAL</span><span>TAKOTOOLS · BUILT FOR DEVELOPERS</span></footer>
+    <footer className="gzip-footer"><SystemStatus /><span>TAKOTOOLS · BUILT FOR DEVELOPERS</span></footer>
   </div>;
 }

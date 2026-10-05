@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#183b48"/>
+      <stop offset="1" stop-color="#10252f"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#ff927b"/>
+      <stop offset="1" stop-color="#ed5f67"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="26" stdDeviation="22" flood-color="#07171d" flood-opacity=".42"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" rx="224" fill="url(#bg)"/>
+  <circle cx="512" cy="480" r="360" fill="#ffffff" opacity=".035"/>
+  <g filter="url(#shadow)" stroke="#a84358" stroke-width="17" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Eight friendly curling tentacles -->
+    <path d="M350 564 C279 585 258 650 278 700 C296 746 348 739 360 706 C370 678 339 659 321 682" fill="none" stroke="url(#body)" stroke-width="70"/>
+    <path d="M416 590 C365 654 381 729 419 755 C453 778 487 744 473 714 C461 690 427 697 429 724" fill="none" stroke="url(#body)" stroke-width="70"/>
+    <path d="M483 600 C454 683 492 746 537 753 C580 760 596 715 572 695 C551 678 524 696 539 721" fill="none" stroke="url(#body)" stroke-width="70"/>
+    <path d="M552 586 C557 664 610 711 651 695 C690 681 682 635 653 627 C628 620 612 649 634 667" fill="none" stroke="url(#body)" stroke-width="70"/>
+    <path d="M630 548 C687 594 748 576 761 536 C773 498 733 475 710 496 C690 515 708 546 736 534" fill="none" stroke="url(#body)" stroke-width="70"/>
+    <path d="M666 475 C737 487 785 443 771 401 C758 363 712 367 702 397 C694 423 725 439 744 416" fill="none" stroke="url(#body)" stroke-width="70"/>
+    <path d="M632 398 C687 348 676 286 637 268 C600 251 572 287 591 313 C607 335 639 321 627 292" fill="none" stroke="url(#body)" stroke-width="70"/>
+    <path d="M395 408 C343 351 282 362 265 402 C249 440 287 466 312 447 C334 430 318 397 290 407" fill="none" stroke="url(#body)" stroke-width="70"/>
+    <!-- Head -->
+    <path d="M335 476 C335 356 414 279 517 279 C620 279 690 356 690 476 C690 562 623 614 512 614 C402 614 335 562 335 476 Z" fill="url(#body)"/>
+  </g>
+  <!-- Face -->
+  <ellipse cx="449" cy="451" rx="30" ry="39" fill="#fff8e9" stroke="none"/>
+  <ellipse cx="574" cy="451" rx="30" ry="39" fill="#fff8e9" stroke="none"/>
+  <ellipse cx="456" cy="460" rx="13" ry="21" fill="#193a46" stroke="none"/>
+  <ellipse cx="581" cy="460" rx="13" ry="21" fill="#193a46" stroke="none"/>
+  <circle cx="461" cy="452" r="5" fill="#ffffff"/>
+  <circle cx="586" cy="452" r="5" fill="#ffffff"/>
+  <path d="M478 513 Q512 542 546 513" fill="none" stroke="#a84358" stroke-width="12" stroke-linecap="round"/>
+  <!-- Developer motif: terminal tile with code brackets -->
+  <g transform="translate(512 790)">
+    <rect x="-108" y="-62" width="216" height="124" rx="29" fill="#d9f5e9" stroke="#0c2730" stroke-width="15"/>
+    <path d="M-30 -23 L-58 0 L-30 23 M30 -23 L58 0 L30 23 M12 -31 L-10 31" fill="none" stroke="#187f70" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowDown, ArrowRight, ChevronDown, FileInput, FileOutput, Maximize2, Minimize2, Play, Sparkles } from 'lucide-react';
-import { FORMATS, supportsFormatting, type DataFormat, type FormatMode } from '../core';
+import { Sparkles } from 'lucide-react';
+import type { DataFormat, FormatMode } from '../core';
+import { InfoCallout } from '../../../components/InfoCallout';
+import { SystemStatus } from '../../../components/SystemStatus';
+import { ControlPanel } from './widgets/ControlPanel';
 import { Input } from './widgets/Input';
 import { Output } from './widgets/Output';
 import './View.css';
@@ -65,31 +68,16 @@ export function View() {
   }
 
   return <div className="transform-view">
-    <div className="transform-topline">
-      <div className="breadcrumbs"><span>Serialization</span><span className="crumb-divider">/</span><strong>Transformations</strong></div>
-      <div className="local-badge"><span /> Runs locally</div>
-    </div>
+    <header className="transform-topline"><div className="transform-breadcrumbs"><span>Serialization</span><span>/</span><strong>Transformations</strong></div><div className="transform-local-badge"><span /> Runs locally</div></header>
     <main className="transform-main">
-      <div className="tool-title-row">
-        <div><div className="tool-eyebrow"><span className="eyebrow-glyph">✳</span> SERIALIZATION TOOL</div><h1>Transformations</h1><p>Convert structured data between formats with precision.</p></div>
-        <button className="icon-button help-button" title="Tool information"><Sparkles size={15} /></button>
-      </div>
-      <div className="format-card">
-        <div className="format-block"><div className="format-label"><FileInput size={14} /> INPUT FORMAT</div><label className="select-wrap"><select value={source} onChange={(event) => setSource(event.target.value as DataFormat)} aria-label="Input format">{FORMATS.map((format) => <option key={format}>{format}</option>)}</select><ChevronDown size={15} /></label></div>
-        <div className="format-arrow"><ArrowRight size={17} /></div>
-        <div className="format-block"><div className="format-label"><FileOutput size={14} /> OUTPUT FORMAT</div><label className="select-wrap"><select value={target} onChange={(event) => setTarget(event.target.value as DataFormat)} aria-label="Output format">{FORMATS.map((format) => <option key={format}>{format}</option>)}</select><ChevronDown size={15} /></label></div>
-        <div className="format-actions">
-          {supportsFormatting(source) ? <div className="format-toggle" aria-label="Input formatting"><button className={mode === 'pretty' ? 'active' : ''} onClick={() => runFormat('pretty')} title="Beautify"><Maximize2 size={14} /></button><button className={mode === 'compact' ? 'active' : ''} onClick={() => runFormat('compact')} title="Minify"><Minimize2 size={14} /></button></div> : <span className="not-formattable">No formatting</span>}
-          <button className="convert-button" onClick={runConversion} disabled={busy}><Play size={13} fill="currentColor" />{busy ? 'Converting…' : 'Convert'}</button>
-        </div>
-      </div>
-      <div className="editor-grid">
+      <div className="transform-title-row"><div><div className="transform-eyebrow">SERIALIZATION TOOL</div><h1>Transformations</h1><p>Convert structured data between formats with precision.</p></div><button className="transform-help-button" title="Tool information"><Sparkles size={15} /></button></div>
+      <ControlPanel source={source} target={target} mode={mode} busy={busy} onSourceChange={setSource} onTargetChange={setTarget} onFormat={runFormat} onConvert={runConversion} />
+      <div className="transform-editor-grid">
         <Input input={input} setInput={setInput} inputTab={inputTab} setInputTab={setInputTab} outputLines={output ? output.split('\n').length : 0} clearError={() => setError('')} />
-        <div className="editor-bridge"><ArrowDown size={14} /></div>
         <Output output={output} error={error} target={target} copied={copied} onCopy={copyOutput} clearError={() => setError('')} />
       </div>
-      <div className="tip-card"><span className="tip-icon">✦</span><div><strong>Quick tip</strong><span>Conversion runs locally in a background worker, so large inputs won't block editing.</span></div><span className="tip-shortcut">⇧ ↵</span></div>
+      <InfoCallout title="Quick tip">Conversion runs locally in a background worker, so large inputs won't block editing.</InfoCallout>
     </main>
-    <footer className="transform-footer"><span><span className="footer-dot" /> ALL SYSTEMS OPERATIONAL</span><span>TAKOTOOLS <b>·</b> BUILT FOR DEVELOPERS</span></footer>
+    <footer className="transform-footer"><SystemStatus /><span>TAKOTOOLS · BUILT FOR DEVELOPERS</span></footer>
   </div>;
 }

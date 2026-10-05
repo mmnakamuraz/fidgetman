@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { transformBase64 } from '../core';
+import { InfoCallout } from '../../../components/InfoCallout';
+import { SystemStatus } from '../../../components/SystemStatus';
 import { ControlPanel, type Mode } from './widgets/ControlPanel';
 import { Input } from './widgets/Input';
 import { Output } from './widgets/Output';
@@ -61,8 +63,8 @@ export function View() {
         <Input mode={mode} value={input} onChange={(value) => { setInput(value); setError(''); }} onClear={clear} />
         <Output mode={mode} value={output} error={error} copied={copied} onCopy={copyOutput} />
       </div>
-      <div className="base64-tip"><span>✦</span><div><strong>UTF-8 text</strong><p>Unicode characters are converted to UTF-8 bytes before Base64 encoding.</p></div></div>
+      <InfoCallout title="UTF-8 text">Unicode characters are converted to UTF-8 bytes before Base64 encoding.</InfoCallout>
     </main>
-    <footer className="base64-footer"><span><i /> ALL SYSTEMS OPERATIONAL</span><span>TAKOTOOLS · BUILT FOR DEVELOPERS</span></footer>
+    <footer className="base64-footer"><SystemStatus /><span>TAKOTOOLS · BUILT FOR DEVELOPERS</span></footer>
   </div>;
 }

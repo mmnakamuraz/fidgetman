@@ -1,4 +1,6 @@
 import { useRef, useState } from 'react';
+import { InfoCallout } from '../../../components/InfoCallout';
+import { SystemStatus } from '../../../components/SystemStatus';
 import { useEffect } from 'react';
 import { hashText, type HashAlgorithm } from '../core';
 import { ControlPanel } from './widgets/ControlPanel';
@@ -88,8 +90,8 @@ export function View() {
         <Input value={input} onChange={updateInput} onClear={clear} />
         <Output algorithm={algorithm} value={output} error={error} busy={busy} copied={copied} onCopy={copyOutput} />
       </div>
-      <div className="hash-tip"><span>✦</span><div><strong>Local hashing</strong><p>Your text is processed on this device. For security-sensitive use, choose SHA-256 or stronger; MD5 and SHA-1 are legacy algorithms.</p></div></div>
+      <InfoCallout title="Local hashing">Your text is processed on this device. For security-sensitive use, choose SHA-256 or stronger; MD5 and SHA-1 are legacy algorithms.</InfoCallout>
     </main>
-    <footer className="hash-footer"><span><i /> ALL SYSTEMS OPERATIONAL</span><span>TAKOTOOLS · BUILT FOR DEVELOPERS</span></footer>
+    <footer className="hash-footer"><SystemStatus /><span>TAKOTOOLS · BUILT FOR DEVELOPERS</span></footer>
   </div>;
 }
