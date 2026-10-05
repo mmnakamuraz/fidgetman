@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react';
-import { Archive, Code2, Shield, Sparkles } from 'lucide-react';
+import { Archive, Clipboard, Code2, Shield, Sparkles } from 'lucide-react';
 import { SearchBar } from './SearchBar';
 import { Section, type ToolSection } from './Section';
 import './ToolBrowser.css';
 
-export type ToolId = 'transformations' | 'crypto' | 'codecs' | 'gzip-base64' | 'uuid' | 'fake-personal-data' | 'credit-card';
+export type ToolId = 'transformations' | 'crypto' | 'codecs' | 'gzip-base64' | 'uuid' | 'fake-personal-data' | 'credit-card' | 'system-clipboard';
 
 const sections: ToolSection[] = [
   { id: 'serialization', label: 'Serialization', icon: Sparkles, tools: [{ id: 'transformations', label: 'Transformations', detail: 'Convert structured data' }] },
@@ -15,6 +15,9 @@ const sections: ToolSection[] = [
     { id: 'uuid', label: 'UUID', detail: 'Generate random UUID v4 identifiers' },
     { id: 'fake-personal-data', label: 'Fake Personal Data', detail: 'Generate fictional localized profiles' },
     { id: 'credit-card', label: 'Credit Card', detail: 'Published payment sandbox test cards' },
+  ] },
+  { id: 'system', label: 'System', icon: Clipboard, tools: [
+    { id: 'system-clipboard', label: 'Clipboard', detail: 'View and manage system clipboard text' },
   ] },
 ];
 
