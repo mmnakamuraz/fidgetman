@@ -1,4 +1,4 @@
-import { formatInput, type DataFormat, type FormatMode, transform } from '../services/serialization/transform';
+import { formatInput, type DataFormat, type FormatMode, transform } from '../core';
 
 type Request =
   | { id: number; operation: 'transform'; input: string; source: DataFormat; target: DataFormat; mode: FormatMode }

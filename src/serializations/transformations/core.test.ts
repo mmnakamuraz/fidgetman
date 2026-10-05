@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatInput, transform, type DataFormat } from './transform';
+import { formatInput, transform, type DataFormat } from './core';
 
 describe('serialization transformations', () => {
   it('converts JSON to YAML 1.2', () => {
