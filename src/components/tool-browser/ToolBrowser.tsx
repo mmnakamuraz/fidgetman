@@ -4,13 +4,18 @@ import { SearchBar } from './SearchBar';
 import { Section, type ToolSection } from './Section';
 import './ToolBrowser.css';
 
-export type ToolId = 'transformations' | 'crypto' | 'codecs' | 'gzip-base64';
+export type ToolId = 'transformations' | 'crypto' | 'codecs' | 'gzip-base64' | 'uuid' | 'fake-personal-data' | 'credit-card';
 
 const sections: ToolSection[] = [
   { id: 'serialization', label: 'Serialization', icon: Sparkles, tools: [{ id: 'transformations', label: 'Transformations', detail: 'Convert structured data' }] },
   { id: 'crypto', label: 'Crypto', icon: Shield, tools: [{ id: 'crypto', label: 'Hash', detail: 'Generate MD5 and SHA digests' }] },
   { id: 'codecs', label: 'Codecs', icon: Code2, tools: [{ id: 'codecs', label: 'Base64', detail: 'Encode and decode strings' }] },
   { id: 'compression', label: 'Compression', icon: Archive, tools: [{ id: 'gzip-base64', label: 'Gzip (+ Base64)', detail: 'Compress and decompress text' }] },
+  { id: 'generators', label: 'Generators', icon: Sparkles, tools: [
+    { id: 'uuid', label: 'UUID', detail: 'Generate random UUID v4 identifiers' },
+    { id: 'fake-personal-data', label: 'Fake Personal Data', detail: 'Generate fictional localized profiles' },
+    { id: 'credit-card', label: 'Credit Card', detail: 'Published payment sandbox test cards' },
+  ] },
 ];
 
 type ToolBrowserProps = { selectedTool: ToolId; onSelect: (tool: ToolId) => void };
