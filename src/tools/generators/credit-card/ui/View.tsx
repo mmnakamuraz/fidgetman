@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { InfoCallout } from '../../../../components/InfoCallout';
+import { ToolTopBar } from '../../../../components/ToolTopBar';
 import { SystemStatus } from '../../../../components/SystemStatus';
 import { CARD_PROVIDERS, generateTestCard, type CardProvider, type TestCard } from '../core';
 import { GeneratorPanel } from './widgets/GeneratorPanel';
@@ -16,7 +17,7 @@ export function View() {
     catch { setCopied(false); }
   }
   return <div className="generators-view credit-card-view">
-    <header className="generators-topline"><div className="generators-breadcrumbs"><span>Generators</span><span>/</span><strong>Credit Card</strong></div><div className="generators-local-badge"><span /> Runs locally</div></header>
+    <ToolTopBar section="Generators" tool="Credit Card" />
     <main className="generators-main"><div className="generators-title"><div><div className="generators-eyebrow">PAYMENT TEST DATA</div><h1>Credit Card</h1><p>Published sandbox card numbers for payment integration testing.</p></div></div>
       <div className="test-card-warning"><strong>TEST ONLY — NOT FOR REAL PAYMENTS</strong><span>These provider-published test values are for sandbox integrations only. Never use them for real transactions or customer data.</span></div>
       <GeneratorPanel provider={provider} card={card} copied={copied} onProviderChange={(next) => { setProvider(next); setCard(null); }} onGenerate={generate} onCopy={copy} />

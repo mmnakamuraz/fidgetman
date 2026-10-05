@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { InfoCallout } from '../../../../components/InfoCallout';
+import { ToolTopBar } from '../../../../components/ToolTopBar';
 import { SystemStatus } from '../../../../components/SystemStatus';
 import { createClipboardSlots, saveToSlot, type ClipboardSlots } from '../core';
 import { ClipboardPanel } from './widgets/ClipboardPanel';
@@ -53,7 +54,7 @@ export function View() {
   }
 
   return <div className="clipboard-view">
-    <header className="clipboard-topline"><div className="clipboard-breadcrumbs"><span>System</span><span>/</span><strong>Clipboard</strong></div><div className="clipboard-local-badge"><span /> In-memory only</div></header>
+    <ToolTopBar section="System" tool="Clipboard" status="In-memory only" />
     <main className="clipboard-main">
       <div className="clipboard-title"><div><div className="clipboard-page-eyebrow">SYSTEM TOOL</div><h1>Clipboard</h1><p>View and temporarily manage text from your system clipboard.</p></div></div>
       <ClipboardPanel currentText={currentText} hasRead={hasRead} slots={slots} busy={busy} onRefresh={refreshClipboard} onSave={updateSlot} onSend={sendSlot} />

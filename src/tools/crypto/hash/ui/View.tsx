@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { InfoCallout } from '../../../../components/InfoCallout';
+import { ToolTopBar } from '../../../../components/ToolTopBar';
 import { SystemStatus } from '../../../../components/SystemStatus';
 import { useEffect } from 'react';
 import { hashText, type HashAlgorithm } from '../core';
@@ -81,7 +82,7 @@ export function View() {
   const legacy = algorithm === 'MD5' || algorithm === 'SHA-1';
 
   return <div className="hash-view">
-    <header className="hash-topline"><div className="hash-breadcrumbs"><span>Crypto</span><span>/</span><strong>Hash</strong></div><div className="hash-local-badge"><span /> Runs locally</div></header>
+    <ToolTopBar section="Crypto" tool="Hash" />
     <main className="hash-main">
       <div className="hash-title-row"><div><div className="hash-eyebrow">CRYPTO TOOL</div><h1>Hash</h1><p>Generate a cryptographic digest from text.</p></div></div>
       <ControlPanel algorithm={algorithm} busy={busy} onAlgorithmChange={updateAlgorithm} onGenerate={generateHash} />

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { transformBase64 } from '../core';
 import { InfoCallout } from '../../../../components/InfoCallout';
+import { ToolTopBar } from '../../../../components/ToolTopBar';
 import { SystemStatus } from '../../../../components/SystemStatus';
 import { ControlPanel, type Mode } from './widgets/ControlPanel';
 import { Input } from './widgets/Input';
@@ -55,7 +56,7 @@ export function View() {
   }
 
   return <div className="base64-view">
-    <header className="base64-topline"><div className="base64-breadcrumbs"><span>Codecs</span><span>/</span><strong>Base64</strong></div><div className="base64-local-badge"><span /> Runs locally</div></header>
+    <ToolTopBar section="Codecs" tool="Base64" />
     <main className="base64-main">
       <div className="base64-title-row"><div><div className="base64-eyebrow">CODEC TOOL</div><h1>Base64</h1><p>Encode and decode UTF-8 strings with Base64.</p></div></div>
       <ControlPanel mode={mode} onModeChange={changeMode} onConvert={convert} />

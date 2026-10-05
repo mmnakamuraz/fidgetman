@@ -1,7 +1,9 @@
-import { ChevronDown } from 'lucide-react';
+import { SelectField } from '../../../../../components/SelectField';
 import './ControlPanel.css';
 
 export type Mode = 'encode' | 'decode';
+
+const modeOptions = [{ value: 'encode', label: 'Encode' }, { value: 'decode', label: 'Decode' }] as const;
 
 type ControlPanelProps = {
   mode: Mode;
@@ -12,14 +14,7 @@ type ControlPanelProps = {
 export function ControlPanel({ mode, onModeChange, onConvert }: ControlPanelProps) {
   return <section className="base64-controls">
     <div className="base64-mode-block">
-      <span className="base64-control-label">OPERATION</span>
-      <label className="base64-select-wrap">
-        <select value={mode} onChange={(event) => onModeChange(event.target.value as Mode)} aria-label="Base64 operation">
-          <option value="encode">Encode</option>
-          <option value="decode">Decode</option>
-        </select>
-        <ChevronDown size={15} />
-      </label>
+      <SelectField value={mode} options={modeOptions} onChange={onModeChange} ariaLabel="Base64 operation" label="OPERATION" />
     </div>
     <button className="base64-convert-button" onClick={onConvert}>Convert</button>
   </section>;

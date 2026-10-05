@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { transformGzipBase64, type CompressionMode } from '../core';
 import { InfoCallout } from '../../../../components/InfoCallout';
+import { ToolTopBar } from '../../../../components/ToolTopBar';
 import { SystemStatus } from '../../../../components/SystemStatus';
 import { ControlPanel } from './widgets/ControlPanel';
 import { Input } from './widgets/Input';
@@ -77,7 +78,7 @@ export function View() {
   }
 
   return <div className="gzip-view">
-    <header className="gzip-topline"><div className="gzip-breadcrumbs"><span>Compression</span><span>/</span><strong>Gzip (+ Base64)</strong></div><div className="gzip-local-badge"><span /> Runs locally</div></header>
+    <ToolTopBar section="Compression" tool="Gzip (+ Base64)" />
     <main className="gzip-main">
       <div className="gzip-title-row"><div><div className="gzip-eyebrow">COMPRESSION TOOL</div><h1>Gzip (+ Base64)</h1><p>Compress text to Gzip encoded as standard Base64, or decode it back.</p></div></div>
       <ControlPanel mode={mode} busy={busy} onModeChange={changeMode} onConvert={convert} />

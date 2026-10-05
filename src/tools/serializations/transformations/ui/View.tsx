@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Sparkles } from 'lucide-react';
 import type { DataFormat, FormatMode } from '../core';
 import { InfoCallout } from '../../../../components/InfoCallout';
+import { ToolTopBar } from '../../../../components/ToolTopBar';
 import { SystemStatus } from '../../../../components/SystemStatus';
 import { ControlPanel } from './widgets/ControlPanel';
 import { Input } from './widgets/Input';
@@ -68,7 +69,7 @@ export function View() {
   }
 
   return <div className="transform-view">
-    <header className="transform-topline"><div className="transform-breadcrumbs"><span>Serialization</span><span>/</span><strong>Transformations</strong></div><div className="transform-local-badge"><span /> Runs locally</div></header>
+    <ToolTopBar section="Serialization" tool="Transformations" />
     <main className="transform-main">
       <div className="transform-title-row"><div><div className="transform-eyebrow">SERIALIZATION TOOL</div><h1>Transformations</h1><p>Convert structured data between formats with precision.</p></div><button className="transform-help-button" title="Tool information"><Sparkles size={15} /></button></div>
       <ControlPanel source={source} target={target} mode={mode} busy={busy} onSourceChange={setSource} onTargetChange={setTarget} onFormat={runFormat} onConvert={runConversion} />
