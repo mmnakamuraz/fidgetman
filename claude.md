@@ -18,8 +18,8 @@ Una navaja suiza del desarrollador con muchas herramientas comunes para todo des
 * Cada vista, modal o popup debe vivir en su propio archivo.
 * Las hojas de estilo para cada componente debe vivir en su archivo separado, y humanamente legible y formateado.
 * No usar clases nativas de HTML. En su lugar, en lo posible crear un wrapper de React si es que no existe uno built-in
-* Si es que hay componentes que sean de más bajo nivel (que se puedan usar en practicamente cualquier proyecto) van en una carpeta más general llamada "widgets"
-* Las funciones puras de cada herramienta vive separada en una carpeta aparte. La UI simplemente consume el "servicio" de esta carpeta. Esto es para que quede totalmente desacoplada la UI de la funcionalidad "core" de takotools, lo que más tarde permitiría implementar nuevos entrypoints de esta app.
+* Si es que hay componentes que sean de más bajo nivel (que se puedan usar en practicamente cualquier proyecto) van en una carpeta más general llamada "widgets" permitiría implementar nuevos entrypoints de esta app.
+* Cada herramienta vive en su propia carpeta, incluyendo su funcionalidad core en su propio archivo y su vista. La vista y componentes de UI viven en la carpeta "ui" dentro de la carpeta de la herramienta. Es decir, en el código las herramientas se separan por carpetas y dentro tienen todo lo necesario para funcionar dentro de takotools, incluyendo su vista de UI, sus componentes de UI y sus componentes funcionales.
 * Cuando se agrega nueva funcionalidad, en lo posible intentar no modificar en absoluto lo que ya existe a menos que en serio tenga sentido hacerlo (por ejemplo, al agregar un prop nuevo a un componente existente), y extender más que modificar.
 
 ## Unit testing
