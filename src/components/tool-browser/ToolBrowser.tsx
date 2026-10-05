@@ -4,7 +4,7 @@ import { SearchBar } from './SearchBar';
 import { Section, type ToolSection } from './Section';
 import './ToolBrowser.css';
 
-export type ToolId = 'transformations' | 'crypto' | 'codecs' | 'gzip-base64' | 'uuid' | 'fake-personal-data' | 'credit-card' | 'system-clipboard';
+export type ToolId = 'transformations' | 'crypto' | 'codecs' | 'gzip-base64' | 'uuid' | 'fake-personal-data' | 'credit-card' | 'system-clipboard' | 'javascript-playground';
 
 const sections: ToolSection[] = [
   { id: 'serialization', label: 'Serialization', icon: Sparkles, tools: [{ id: 'transformations', label: 'Transformations', detail: 'Convert structured data' }] },
@@ -18,6 +18,9 @@ const sections: ToolSection[] = [
   ] },
   { id: 'system', label: 'System', icon: Clipboard, tools: [
     { id: 'system-clipboard', label: 'Clipboard', detail: 'View and manage system clipboard text' },
+  ] },
+  { id: 'playgrounds', label: 'Playgrounds', icon: Code2, tools: [
+    { id: 'javascript-playground', label: 'JavaScript', detail: 'Run JavaScript snippets locally' },
   ] },
 ];
 
