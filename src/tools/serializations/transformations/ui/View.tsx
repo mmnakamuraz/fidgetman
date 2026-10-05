@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Sparkles } from 'lucide-react';
 import type { DataFormat, FormatMode } from '../core';
-import { InfoCallout } from '../../../components/InfoCallout';
-import { SystemStatus } from '../../../components/SystemStatus';
+import { InfoCallout } from '../../../../components/InfoCallout';
+import { SystemStatus } from '../../../../components/SystemStatus';
 import { ControlPanel } from './widgets/ControlPanel';
 import { Input } from './widgets/Input';
 import { Output } from './widgets/Output';

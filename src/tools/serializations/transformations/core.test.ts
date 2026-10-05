@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatInput, transform, type DataFormat } from './core';
+import { formatInput, supportsFormatting, transform, type DataFormat } from './core';
 
 describe('serialization transformations', () => {
   it('converts JSON to YAML 1.2', () => {
@@ -39,11 +39,20 @@ describe('serialization transformations', () => {
     expect(() => transform('[1,2]', 'JSON', 'URL Encoded')).toThrow('requires an object');
   });
 
-  it('formats JSON input without changing its format', () => {
-    expect(formatInput('{"a":1}', 'JSON', 'pretty')).toBe('{\n  "a": 1\n}');
+  it('supports formatting only for JSON and XML', () => {
+    expect(supportsFormatting('JSON')).toBe(true);
+    expect(supportsFormatting('XML')).toBe(true);
+    expect(supportsFormatting('YAML')).toBe(false);
+    expect(supportsFormatting('URL Encoded')).toBe(false);
   });
 
-  it('rejects formatting for URL-encoded input', () => {
+  it('formats JSON input without changing its format', () => {
+    expect(formatInput('{"a":1}', 'JSON', 'pretty')).toBe('{\n  "a": 1\n}');
+    expect(formatInput('{"a":1}', 'JSON', 'compact')).toBe('{"a":1}');
+  });
+
+  it('rejects formatting for YAML and URL-encoded input', () => {
+    expect(() => formatInput('a: 1', 'YAML', 'pretty')).toThrow('not available');
     expect(() => formatInput('a=1', 'URL Encoded', 'pretty')).toThrow('not available');
   });
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { transformBase64 } from '../core';
-import { InfoCallout } from '../../../components/InfoCallout';
-import { SystemStatus } from '../../../components/SystemStatus';
+import { InfoCallout } from '../../../../components/InfoCallout';
+import { SystemStatus } from '../../../../components/SystemStatus';
 import { ControlPanel, type Mode } from './widgets/ControlPanel';
 import { Input } from './widgets/Input';
 import { Output } from './widgets/Output';

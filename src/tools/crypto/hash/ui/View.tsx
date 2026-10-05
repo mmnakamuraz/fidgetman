@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
-import { InfoCallout } from '../../../components/InfoCallout';
-import { SystemStatus } from '../../../components/SystemStatus';
+import { InfoCallout } from '../../../../components/InfoCallout';
+import { SystemStatus } from '../../../../components/SystemStatus';
 import { useEffect } from 'react';
 import { hashText, type HashAlgorithm } from '../core';
 import { ControlPanel } from './widgets/ControlPanel';

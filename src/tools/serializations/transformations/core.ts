@@ -7,7 +7,7 @@ export type FormatMode = 'compact' | 'pretty';
 export const FORMATS: DataFormat[] = ['JSON', 'XML', 'YAML', 'URL Encoded'];
 
 export function supportsFormatting(format: DataFormat): boolean {
-  return format === 'JSON' || format === 'XML' || format === 'YAML';
+  return format === 'JSON' || format === 'XML';
 }
 
 export function transform(
