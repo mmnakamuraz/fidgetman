@@ -1,0 +1,2 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap');
+.app-shell{height:100vh;min-width:0;display:flex;background:#101216;font-family:'DM Sans',Inter,system-ui,-apple-system,sans-serif}.placeholder-view{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#8c919b}.placeholder-view>span{font-size:9px;letter-spacing:1.5px;color:#6bc7a8}.placeholder-view h1{font-size:27px;color:#e7e9ed;margin:12px}.placeholder-view p{font-size:12px}

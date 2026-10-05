@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/testsetup.ts","./src/components/toolbrowser/toolbrowser.tsx","./src/services/serialization/transform.test.ts","./src/services/serialization/transform.ts","./src/views/transformations/transformationsview.tsx","./src/workers/conversion.worker.ts"],"version":"5.7.3"}
