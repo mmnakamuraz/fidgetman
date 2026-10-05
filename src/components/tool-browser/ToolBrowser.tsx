@@ -1,15 +1,16 @@
 import { useMemo, useState } from 'react';
-import { Code2, Shield, Sparkles } from 'lucide-react';
+import { Archive, Code2, Shield, Sparkles } from 'lucide-react';
 import { SearchBar } from './SearchBar';
 import { Section, type ToolSection } from './Section';
 import './ToolBrowser.css';
 
-export type ToolId = 'transformations' | 'crypto' | 'codecs';
+export type ToolId = 'transformations' | 'crypto' | 'codecs' | 'gzip-base64';
 
 const sections: ToolSection[] = [
   { id: 'serialization', label: 'Serialization', icon: Sparkles, tools: [{ id: 'transformations', label: 'Transformations', detail: 'Convert structured data' }] },
   { id: 'crypto', label: 'Crypto', icon: Shield, tools: [{ id: 'crypto', label: 'Hash', detail: 'Generate MD5 and SHA digests' }] },
   { id: 'codecs', label: 'Codecs', icon: Code2, tools: [{ id: 'codecs', label: 'Base64', detail: 'Encode and decode strings' }] },
+  { id: 'compression', label: 'Compression', icon: Archive, tools: [{ id: 'gzip-base64', label: 'Gzip (+ Base64)', detail: 'Compress and decompress text' }] },
 ];
 
 type ToolBrowserProps = { selectedTool: ToolId; onSelect: (tool: ToolId) => void };
