@@ -1,11 +1,11 @@
 import { useMemo, useState } from 'react';
-import { Archive, Clipboard, Code2, Shield, Sparkles } from 'lucide-react';
+import { Archive, Clipboard, Code2, FileText, Shield, Sparkles } from 'lucide-react';
 import { toolSections, type ToolId } from '../../tools/registry';
 import { SearchBar } from './SearchBar';
 import { Section } from './Section';
 import './ToolBrowser.css';
 
-const sectionIcons = { Sparkles, Shield, Code2, Archive, Clipboard } as const;
+const sectionIcons = { Sparkles, Shield, Code2, Archive, Clipboard, FileText } as const;
 
 type ToolBrowserProps = { selectedTool: ToolId; onSelect: (tool: ToolId) => void };
 
@@ -25,7 +25,7 @@ export function ToolBrowser({ selectedTool, onSelect }: ToolBrowserProps) {
   }
 
   return <aside className="tool-browser" aria-label="Tool browser">
-    <div className="browser-heading"><span className="brand-mark">t</span><div><strong>takotools</strong><span>DEVELOPER TOOLKIT</span></div></div>
+    <div className="browser-heading"><span className="brand-mark">F</span><div><strong>Fidgetman</strong><span>DEVELOPER TOOLKIT</span></div></div>
     <SearchBar value={search} onChange={setSearch} />
     <div className="section-caption">WORKSPACE</div>
     <nav className="section-list">
@@ -39,6 +39,6 @@ export function ToolBrowser({ selectedTool, onSelect }: ToolBrowserProps) {
       />)}
       {visibleSections.length === 0 && <p className="no-tools">No tools found.</p>}
     </nav>
-    <div className="browser-footer"><div className="avatar">T</div><div><strong>Local workspace</strong><span>All processing stays on device</span></div><span className="online-dot" /></div>
+    <div className="browser-footer"><div className="avatar">F</div><div><strong>Local workspace</strong><span>All processing stays on device</span></div><span className="online-dot" /></div>
   </aside>;
 }

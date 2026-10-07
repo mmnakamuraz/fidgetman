@@ -22,6 +22,6 @@ export function View() {
       <div className="test-card-warning"><strong>TEST ONLY — NOT FOR REAL PAYMENTS</strong><span>These provider-published test values are for sandbox integrations only. Never use them for real transactions or customer data.</span></div>
       <GeneratorPanel provider={provider} card={card} copied={copied} onProviderChange={(next) => { setProvider(next); setCard(null); }} onGenerate={generate} onCopy={copy} />
       <InfoCallout title="Sandbox use only">The displayed values are static provider test numbers, not random payment credentials. Use them only in the provider's test environment.</InfoCallout>
-    </main><footer className="generators-footer"><SystemStatus /><span>TAKOTOOLS · BUILT FOR DEVELOPERS</span></footer>
+    </main><footer className="generators-footer"><SystemStatus /><span>FIDGETMAN · BUILT FOR DEVELOPERS</span></footer>
   </div>;
 }

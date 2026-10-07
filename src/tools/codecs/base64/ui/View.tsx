@@ -66,6 +66,6 @@ export function View() {
       </div>
       <InfoCallout title="UTF-8 text">Unicode characters are converted to UTF-8 bytes before Base64 encoding.</InfoCallout>
     </main>
-    <footer className="base64-footer"><SystemStatus /><span>TAKOTOOLS · BUILT FOR DEVELOPERS</span></footer>
+    <footer className="base64-footer"><SystemStatus /><span>FIDGETMAN · BUILT FOR DEVELOPERS</span></footer>
   </div>;
 }

@@ -1,4 +1,4 @@
-export type SectionIcon = 'Sparkles' | 'Shield' | 'Code2' | 'Archive' | 'Clipboard';
+export type SectionIcon = 'Sparkles' | 'Shield' | 'Code2' | 'Archive' | 'Clipboard' | 'FileText';
 
 export type SectionManifest = {
   id: string;

@@ -93,6 +93,6 @@ export function View() {
       </div>
       <InfoCallout title="Local hashing">Your text is processed on this device. For security-sensitive use, choose SHA-256 or stronger; MD5 and SHA-1 are legacy algorithms.</InfoCallout>
     </main>
-    <footer className="hash-footer"><SystemStatus /><span>TAKOTOOLS · BUILT FOR DEVELOPERS</span></footer>
+    <footer className="hash-footer"><SystemStatus /><span>FIDGETMAN · BUILT FOR DEVELOPERS</span></footer>
   </div>;
 }

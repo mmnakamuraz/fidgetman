@@ -85,6 +85,6 @@ export function View() {
       <div className="gzip-editor-grid"><Input mode={mode} value={input} onChange={changeInput} onClear={clear} /><Output mode={mode} value={output} error={error} busy={busy} copied={copied} onCopy={copyOutput} /></div>
       <InfoCallout title="Standard Gzip + Base64">Compression runs locally. Output is Base64 of Gzip-compressed UTF-8 bytes.</InfoCallout>
     </main>
-    <footer className="gzip-footer"><SystemStatus /><span>TAKOTOOLS · BUILT FOR DEVELOPERS</span></footer>
+    <footer className="gzip-footer"><SystemStatus /><span>FIDGETMAN · BUILT FOR DEVELOPERS</span></footer>
   </div>;
 }

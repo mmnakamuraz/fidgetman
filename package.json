@@ -1,6 +1,6 @@
 {
-  "name": "takotools",
-  "version": "0.1.0",
+  "name": "fidgetman",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -36,8 +36,8 @@
   },
   "main": "electron/main.cjs",
   "build": {
-    "appId": "com.takotools.app",
-    "productName": "Takotools",
+    "appId": "com.fidgetman.app",
+    "productName": "Fidgetman",
     "directories": {
       "output": "release"
     },

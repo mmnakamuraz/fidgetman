@@ -79,6 +79,6 @@ export function View() {
       </div>
       <InfoCallout title="Quick tip">Conversion runs locally in a background worker, so large inputs won't block editing.</InfoCallout>
     </main>
-    <footer className="transform-footer"><SystemStatus /><span>TAKOTOOLS · BUILT FOR DEVELOPERS</span></footer>
+    <footer className="transform-footer"><SystemStatus /><span>FIDGETMAN · BUILT FOR DEVELOPERS</span></footer>
   </div>;
 }

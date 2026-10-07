@@ -60,6 +60,6 @@ export function View() {
       {message && <p className="clipboard-feedback clipboard-success" role="status">{message}</p>}
       <InfoCallout title="Private and temporary">Clipboard text and the five slots stay in memory for this app session only and are not saved after closing the app. Reading the system clipboard happens only when you press Refresh.</InfoCallout>
     </main>
-    <footer className="clipboard-footer"><SystemStatus /><span>TAKOTOOLS · BUILT FOR DEVELOPERS</span></footer>
+    <footer className="clipboard-footer"><SystemStatus /><span>FIDGETMAN · BUILT FOR DEVELOPERS</span></footer>
   </div>;
 }

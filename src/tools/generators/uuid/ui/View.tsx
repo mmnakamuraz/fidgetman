@@ -25,6 +25,6 @@ export function View() {
     <main className="generators-main"><div className="generators-title"><div><div className="generators-eyebrow">IDENTIFIER GENERATOR</div><h1>UUID</h1><p>Generate random version 4 UUIDs.</p></div></div>
       <GeneratorPanel value={value} history={history} copied={copied} onGenerate={generate} onCopy={copy} />
       <InfoCallout title="About UUIDs">UUIDs are generated locally using the browser's cryptographically secure random number generator. The history is kept only while this view is open.</InfoCallout>
-    </main><footer className="generators-footer"><SystemStatus /><span>TAKOTOOLS · BUILT FOR DEVELOPERS</span></footer>
+    </main><footer className="generators-footer"><SystemStatus /><span>FIDGETMAN · BUILT FOR DEVELOPERS</span></footer>
   </div>;
 }

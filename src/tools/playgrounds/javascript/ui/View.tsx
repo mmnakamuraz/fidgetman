@@ -68,6 +68,6 @@ export function View() {
       </div>
       <InfoCallout title="Execution and safety">Code runs in a Web Worker so Stop can interrupt long-running scripts without freezing the interface. This is not a security sandbox: only run code you trust. Snippets are not saved.</InfoCallout>
     </main>
-    <footer className="javascript-playground-footer"><SystemStatus /><span>TAKOTOOLS · BUILT FOR DEVELOPERS</span></footer>
+    <footer className="javascript-playground-footer"><SystemStatus /><span>FIDGETMAN · BUILT FOR DEVELOPERS</span></footer>
   </div>;
 }
