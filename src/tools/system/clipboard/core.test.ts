@@ -1,5 +1,18 @@
 import { describe, expect, it } from 'vitest';
-import { createClipboardSlots, saveToSlot } from './core';
+import { createClipboardSlots, createClipboardState, saveToSlot, updateClipboardSlot, updateClipboardText } from './core';
+
+describe('clipboard session state', () => {
+  it('starts empty and in memory', () => {
+    expect(createClipboardState()).toEqual({ currentText: '', hasRead: false, slots: ['', '', '', '', ''] });
+  });
+
+  it('preserves clipboard text and other slots when updating one slot', () => {
+    const state = updateClipboardText(createClipboardState(), 'current');
+    const withSlot = updateClipboardSlot(state, 3, 'saved');
+    expect(withSlot).toEqual({ currentText: 'current', hasRead: true, slots: ['', '', '', 'saved', ''] });
+    expect(updateClipboardSlot(withSlot, 1, 'another').slots).toEqual(['', 'another', '', 'saved', '']);
+  });
+});
 
 describe('clipboard slots', () => {
   it('starts with five empty in-memory slots', () => {

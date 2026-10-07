@@ -1,6 +1,6 @@
 import { ChevronDown, ChevronRight, type LucideIcon } from 'lucide-react';
 import { ToolItem, type ToolItemData } from './ToolItem';
-import type { ToolId } from './ToolBrowser';
+import type { ToolId } from '../../tools/registry';
 import './Section.css';
 
 export type ToolSection = { id: string; label: string; icon: LucideIcon; tools: ToolItemData[] };

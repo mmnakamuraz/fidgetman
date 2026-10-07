@@ -1,5 +1,5 @@
 import './ToolItem.css';
-import type { ToolId } from './ToolBrowser';
+import type { ToolId } from '../../tools/registry';
 
 export type ToolItemData = { id: ToolId; label: string; detail: string };
 

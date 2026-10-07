@@ -1,20 +1,18 @@
-import { useState } from 'react';
-import { ToolBrowser, type ToolId } from './components/tool-browser/ToolBrowser';
-import { View as TransformationsView } from './tools/serializations/transformations/ui/View';
-import { View as Base64View } from './tools/codecs/base64/ui/View';
-import { View as HashView } from './tools/crypto/hash/ui/View';
-import { View as GzipBase64View } from './tools/compression/gzip-base64/ui/View';
-import { View as UuidView } from './tools/generators/uuid/ui/View';
-import { View as FakePersonalDataView } from './tools/generators/fake-personal-data/ui/View';
-import { View as CreditCardView } from './tools/generators/credit-card/ui/View';
-import { View as ClipboardView } from './tools/system/clipboard/ui/View';
-import { View as JavaScriptPlaygroundView } from './tools/playgrounds/javascript/ui/View';
+import { Suspense, useState } from 'react';
+import { ToolBrowser } from './components/tool-browser/ToolBrowser';
+import { getTool, tools, type ToolId } from './tools/registry';
 import './App.css';
 
 export function App() {
-  const [selectedTool, setSelectedTool] = useState<ToolId>('transformations');
+  const [selectedTool, setSelectedTool] = useState<ToolId>(tools[0]?.id ?? '');
+  const selected = getTool(selectedTool);
+  const View = selected?.View;
+
   return <div className="app-shell">
     <ToolBrowser selectedTool={selectedTool} onSelect={setSelectedTool} />
-    {selectedTool === 'transformations' ? <TransformationsView /> : selectedTool === 'codecs' ? <Base64View /> : selectedTool === 'gzip-base64' ? <GzipBase64View /> : selectedTool === 'crypto' ? <HashView /> : selectedTool === 'uuid' ? <UuidView /> : selectedTool === 'fake-personal-data' ? <FakePersonalDataView /> : selectedTool === 'credit-card' ? <CreditCardView /> : selectedTool === 'javascript-playground' ? <JavaScriptPlaygroundView /> : <ClipboardView />}
+    <Suspense fallback={<div className="tool-loading" role="status">Loading tool…</div>}>
+      {View ? <View /> : <main className="tool-loading">No tools are available.</main>}
+    </Suspense>
   </div>;
 }
+

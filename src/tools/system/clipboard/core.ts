@@ -1,5 +1,18 @@
 export const CLIPBOARD_SLOT_COUNT = 5;
 export type ClipboardSlots = string[];
+export type ClipboardState = { currentText: string; hasRead: boolean; slots: ClipboardSlots };
+
+export function createClipboardState(): ClipboardState {
+  return { currentText: '', hasRead: false, slots: createClipboardSlots() };
+}
+
+export function updateClipboardText(state: ClipboardState, currentText: string): ClipboardState {
+  return { ...state, currentText, hasRead: true };
+}
+
+export function updateClipboardSlot(state: ClipboardState, index: number, value: string): ClipboardState {
+  return { ...state, slots: saveToSlot(state.slots, index, value) };
+}
 
 export function createClipboardSlots(): ClipboardSlots {
   return Array.from({ length: CLIPBOARD_SLOT_COUNT }, () => '');

@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { InfoCallout } from '../../../../components/InfoCallout';
 import { ToolTopBar } from '../../../../components/ToolTopBar';
 import { SystemStatus } from '../../../../components/SystemStatus';
-import { createClipboardSlots, saveToSlot, type ClipboardSlots } from '../core';
+import { useClipboardStore } from '../../../../components/StoreManager';
+import { updateClipboardSlot, updateClipboardText } from '../core';
 import { ClipboardPanel } from './widgets/ClipboardPanel';
 import './View.css';
 
 export function View() {
-  const [currentText, setCurrentText] = useState('');
-  const [hasRead, setHasRead] = useState(false);
-  const [slots, setSlots] = useState<ClipboardSlots>(createClipboardSlots);
+  const { clipboardState: state, setClipboardState: onStateChange } = useClipboardStore();
+  const { currentText, hasRead, slots } = state;
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
@@ -20,8 +20,7 @@ export function View() {
     setMessage('');
     try {
       const text = await navigator.clipboard.readText();
-      setCurrentText(text);
-      setHasRead(true);
+      onStateChange(updateClipboardText(state, text));
     } catch {
       setError('Clipboard access was denied or is unavailable. Check browser permissions and try Refresh again.');
     } finally {
@@ -30,7 +29,7 @@ export function View() {
   }
 
   function updateSlot(index: number, value?: string) {
-    setSlots((current) => saveToSlot(current, index, value ?? currentText));
+    onStateChange(updateClipboardSlot(state, index, value ?? currentText));
     setMessage(`Slot ${index + 1} updated.`);
     setError('');
   }
@@ -43,8 +42,7 @@ export function View() {
     setMessage('');
     try {
       await navigator.clipboard.writeText(value);
-      setCurrentText(value);
-      setHasRead(true);
+      onStateChange(updateClipboardText(state, value));
       setMessage(`Slot ${index + 1} sent to the system clipboard.`);
     } catch {
       setError('Unable to write to the system clipboard. Check browser permissions and try again.');
@@ -60,7 +58,7 @@ export function View() {
       <ClipboardPanel currentText={currentText} hasRead={hasRead} slots={slots} busy={busy} onRefresh={refreshClipboard} onSave={updateSlot} onSend={sendSlot} />
       {error && <p className="clipboard-feedback clipboard-error" role="alert">{error}</p>}
       {message && <p className="clipboard-feedback clipboard-success" role="status">{message}</p>}
-      <InfoCallout title="Private and temporary">Clipboard text and the five slots exist only in this view's memory. Reading the system clipboard happens only when you press Refresh.</InfoCallout>
+      <InfoCallout title="Private and temporary">Clipboard text and the five slots stay in memory for this app session only and are not saved after closing the app. Reading the system clipboard happens only when you press Refresh.</InfoCallout>
     </main>
     <footer className="clipboard-footer"><SystemStatus /><span>TAKOTOOLS · BUILT FOR DEVELOPERS</span></footer>
   </div>;

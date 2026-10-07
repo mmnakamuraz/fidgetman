@@ -1,37 +1,23 @@
 import { useMemo, useState } from 'react';
 import { Archive, Clipboard, Code2, Shield, Sparkles } from 'lucide-react';
+import { toolSections, type ToolId } from '../../tools/registry';
 import { SearchBar } from './SearchBar';
-import { Section, type ToolSection } from './Section';
+import { Section } from './Section';
 import './ToolBrowser.css';
 
-export type ToolId = 'transformations' | 'crypto' | 'codecs' | 'gzip-base64' | 'uuid' | 'fake-personal-data' | 'credit-card' | 'system-clipboard' | 'javascript-playground';
-
-const sections: ToolSection[] = [
-  { id: 'serialization', label: 'Serialization', icon: Sparkles, tools: [{ id: 'transformations', label: 'Transformations', detail: 'Convert structured data' }] },
-  { id: 'crypto', label: 'Crypto', icon: Shield, tools: [{ id: 'crypto', label: 'Hash', detail: 'Generate MD5 and SHA digests' }] },
-  { id: 'codecs', label: 'Codecs', icon: Code2, tools: [{ id: 'codecs', label: 'Base64', detail: 'Encode and decode strings' }] },
-  { id: 'compression', label: 'Compression', icon: Archive, tools: [{ id: 'gzip-base64', label: 'Gzip (+ Base64)', detail: 'Compress and decompress text' }] },
-  { id: 'generators', label: 'Generators', icon: Sparkles, tools: [
-    { id: 'uuid', label: 'UUID', detail: 'Generate random UUID v4 identifiers' },
-    { id: 'fake-personal-data', label: 'Fake Personal Data', detail: 'Generate fictional localized profiles' },
-    { id: 'credit-card', label: 'Credit Card', detail: 'Published payment sandbox test cards' },
-  ] },
-  { id: 'system', label: 'System', icon: Clipboard, tools: [
-    { id: 'system-clipboard', label: 'Clipboard', detail: 'View and manage system clipboard text' },
-  ] },
-  { id: 'playgrounds', label: 'Playgrounds', icon: Code2, tools: [
-    { id: 'javascript-playground', label: 'JavaScript', detail: 'Run JavaScript snippets locally' },
-  ] },
-];
+const sectionIcons = { Sparkles, Shield, Code2, Archive, Clipboard } as const;
 
 type ToolBrowserProps = { selectedTool: ToolId; onSelect: (tool: ToolId) => void };
 
 export function ToolBrowser({ selectedTool, onSelect }: ToolBrowserProps) {
   const [search, setSearch] = useState('');
   const [collapsed, setCollapsed] = useState<string[]>([]);
-  const visibleSections = useMemo(() => sections.map((section) => ({
+  const visibleSections = useMemo(() => toolSections.map((section) => ({
     ...section,
-    tools: section.tools.filter((tool) => `${section.label} ${tool.label} ${tool.detail}`.toLowerCase().includes(search.toLowerCase())),
+    label: section.displayName,
+    icon: sectionIcons[section.icon],
+    tools: section.tools.map((tool) => ({ ...tool, label: tool.displayName }))
+      .filter((tool) => `${section.displayName} ${tool.displayName} ${tool.detail}`.toLowerCase().includes(search.toLowerCase())),
   })).filter((section) => section.tools.length > 0), [search]);
 
   function toggleSection(id: string) {
