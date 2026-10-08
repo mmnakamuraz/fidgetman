@@ -9,7 +9,13 @@
     "preview": "vite preview",
     "electron:dev": "concurrently -k \"vite --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && electron .\"",
     "electron:build": "npm run build && electron-builder",
-    "test": "vitest run"
+    "test": "vitest run",
+    "format": "prettier --write .",
+    "prepare": "husky",
+    "lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,cjs,mjs,jsx,ts,tsx,css,html,json,md,yml,yaml}": "prettier --write"
   },
   "dependencies": {
     "fast-xml-parser": "^5.2.5",
@@ -28,7 +34,10 @@
     "concurrently": "^9.1.2",
     "electron": "^34.0.0",
     "electron-builder": "^25.1.8",
+    "husky": "^9.1.7",
     "jsdom": "^26.0.0",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.9.9",
     "typescript": "~5.7.2",
     "vite": "^6.0.7",
     "vitest": "^2.1.8",
