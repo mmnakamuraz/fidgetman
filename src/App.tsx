@@ -34,20 +34,27 @@ export function App() {
   }
   const View = selected?.View;
 
-  return <div className={`app-shell ${browserVisible ? '' : 'browser-hidden'}`}>
-    {browserVisible && <ToolBrowser selectedTool={selectedTool} onSelect={selectTool} />}
-    <button
-      className="browser-toggle"
-      type="button"
-      aria-label={browserVisible ? 'Hide tool browser' : 'Show tool browser'}
-      aria-expanded={browserVisible}
-      onClick={() => setBrowserVisible((visible) => !visible)}
-    >
-      {browserVisible ? <PanelLeftClose size={17} /> : <PanelLeftOpen size={17} />}
-    </button>
-    <Suspense fallback={<div className="tool-loading" role="status">Loading tool…</div>}>
-      {View ? <View /> : <main className="tool-loading">No tools are available.</main>}
-    </Suspense>
-  </div>;
+  return (
+    <div className={`app-shell ${browserVisible ? '' : 'browser-hidden'}`}>
+      {browserVisible && <ToolBrowser selectedTool={selectedTool} onSelect={selectTool} />}
+      <button
+        className="browser-toggle"
+        type="button"
+        aria-label={browserVisible ? 'Hide tool browser' : 'Show tool browser'}
+        aria-expanded={browserVisible}
+        onClick={() => setBrowserVisible((visible) => !visible)}
+      >
+        {browserVisible ? <PanelLeftClose size={17} /> : <PanelLeftOpen size={17} />}
+      </button>
+      <Suspense
+        fallback={
+          <div className="tool-loading" role="status">
+            Loading tool…
+          </div>
+        }
+      >
+        {View ? <View /> : <main className="tool-loading">No tools are available.</main>}
+      </Suspense>
+    </div>
+  );
 }
-

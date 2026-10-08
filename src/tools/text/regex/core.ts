@@ -6,6 +6,11 @@ export function testRegex(pattern: string, text: string): RegexTestResult {
     const matches = Array.from(text.matchAll(regex), (match) => match[0]);
     return { matches: matches.length > 0, count: matches.length, examples: matches.slice(0, 10) };
   } catch (error) {
-    return { matches: false, count: 0, examples: [], error: error instanceof Error ? error.message : 'Invalid regular expression.' };
+    return {
+      matches: false,
+      count: 0,
+      examples: [],
+      error: error instanceof Error ? error.message : 'Invalid regular expression.',
+    };
   }
 }

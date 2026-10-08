@@ -10,12 +10,7 @@ export function supportsFormatting(format: DataFormat): boolean {
   return format === 'JSON' || format === 'XML';
 }
 
-export function transform(
-  input: string,
-  source: DataFormat,
-  target: DataFormat,
-  mode: FormatMode = 'pretty',
-): string {
+export function transform(input: string, source: DataFormat, target: DataFormat, mode: FormatMode = 'pretty'): string {
   const value = parse(input, source);
   return serialize(value, target, mode);
 }
@@ -52,7 +47,8 @@ function parse(input: string, format: DataFormat): unknown {
       const result: Record<string, string | string[]> = {};
       for (const [key, value] of params) {
         const previous = result[key];
-        result[key] = previous === undefined ? value : Array.isArray(previous) ? [...previous, value] : [previous, value];
+        result[key] =
+          previous === undefined ? value : Array.isArray(previous) ? [...previous, value] : [previous, value];
       }
       return result;
     }
@@ -68,9 +64,7 @@ function appendUrlEncodedEntries(params: URLSearchParams, value: Record<string, 
     }
 
     for (const [index, item] of (Array.isArray(entry) ? entry : [entry]).entries()) {
-      const itemPath = Array.isArray(entry) && item !== null && typeof item === 'object'
-        ? `${path}.${index}`
-        : path;
+      const itemPath = Array.isArray(entry) && item !== null && typeof item === 'object' ? `${path}.${index}` : path;
       if (item !== null && typeof item === 'object' && !Array.isArray(item)) {
         appendUrlEncodedEntries(params, item as Record<string, unknown>, itemPath);
       } else if (item === null) {

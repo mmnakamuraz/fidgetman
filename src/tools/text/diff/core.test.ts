@@ -3,11 +3,21 @@ import { summarizeDiff } from './core';
 
 describe('summarizeDiff', () => {
   it('reports identical texts', () => {
-    expect(summarizeDiff('alpha\nbeta\n', 'alpha\nbeta\n')).toEqual({ identical: true, added: 0, removed: 0, unchanged: 2 });
+    expect(summarizeDiff('alpha\nbeta\n', 'alpha\nbeta\n')).toEqual({
+      identical: true,
+      added: 0,
+      removed: 0,
+      unchanged: 2,
+    });
   });
 
   it('summarizes added and removed lines', () => {
-    expect(summarizeDiff('keep\nremove', 'keep\nadd')).toEqual({ identical: false, added: 1, removed: 1, unchanged: 1 });
+    expect(summarizeDiff('keep\nremove', 'keep\nadd')).toEqual({
+      identical: false,
+      added: 1,
+      removed: 1,
+      unchanged: 1,
+    });
   });
 
   it('handles empty inputs and final newlines', () => {

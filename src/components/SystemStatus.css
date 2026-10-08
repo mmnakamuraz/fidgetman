@@ -1,1 +1,13 @@
-.system-status{display:flex;align-items:center;gap:7px;white-space:nowrap}.system-status i{display:inline-block;width:5px;height:5px;border-radius:50%;background:#62c9a2}
+.system-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+.system-status i {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #62c9a2;
+}

@@ -16,16 +16,26 @@ describe('serialization transformations', () => {
   });
 
   it('preserves repeated URL-encoded keys', () => {
-    expect(transform('tag=red&tag=blue&space=a+b', 'URL Encoded', 'JSON')).toContain('"tag": [\n    "red",\n    "blue"\n  ]');
+    expect(transform('tag=red&tag=blue&space=a+b', 'URL Encoded', 'JSON')).toContain(
+      '"tag": [\n    "red",\n    "blue"\n  ]',
+    );
   });
 
   it('flattens nested objects into dot-separated URL-encoded keys', () => {
-    const result = transform('{"user":{"name":"Ada","address":{"city":"London"}},"active":true}', 'JSON', 'URL Encoded');
+    const result = transform(
+      '{"user":{"name":"Ada","address":{"city":"London"}},"active":true}',
+      'JSON',
+      'URL Encoded',
+    );
     expect(result).toBe('user.name=Ada&user.address.city=London&active=true');
   });
 
   it('encodes flattened keys and values and preserves scalar arrays as repeated keys', () => {
-    const result = transform('{"user.profile":{"display name":"Ada Lovelace"},"tags":["red","blue"]}', 'JSON', 'URL Encoded');
+    const result = transform(
+      '{"user.profile":{"display name":"Ada Lovelace"},"tags":["red","blue"]}',
+      'JSON',
+      'URL Encoded',
+    );
     expect(result).toBe('user.profile.display+name=Ada+Lovelace&tags=red&tags=blue');
   });
 

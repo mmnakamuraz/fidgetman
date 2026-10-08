@@ -18,7 +18,12 @@ export function View() {
   const [copied, setCopied] = useState(false);
   const requestId = useRef(0);
 
-  useEffect(() => () => { requestId.current += 1; }, []);
+  useEffect(
+    () => () => {
+      requestId.current += 1;
+    },
+    [],
+  );
 
   async function generateHash() {
     if (!input) {
@@ -81,18 +86,39 @@ export function View() {
 
   const legacy = algorithm === 'MD5' || algorithm === 'SHA-1';
 
-  return <div className="hash-view">
-    <ToolTopBar section="Crypto" tool="Hash" />
-    <main className="hash-main">
-      <div className="hash-title-row"><div><div className="hash-eyebrow">CRYPTO TOOL</div><h1>Hash</h1><p>Generate a cryptographic digest from text.</p></div></div>
-      <ControlPanel algorithm={algorithm} busy={busy} onAlgorithmChange={updateAlgorithm} onGenerate={generateHash} />
-      {legacy && <div className="hash-warning"><strong>Legacy algorithm</strong><span>{algorithm} is considered weak. Do not use it for password storage or security-sensitive integrity checks.</span></div>}
-      <div className="hash-editor-grid">
-        <Input value={input} onChange={updateInput} onClear={clear} />
-        <Output algorithm={algorithm} value={output} error={error} busy={busy} copied={copied} onCopy={copyOutput} />
-      </div>
-      <InfoCallout title="Local hashing">Your text is processed on this device. For security-sensitive use, choose SHA-256 or stronger; MD5 and SHA-1 are legacy algorithms.</InfoCallout>
-    </main>
-    <footer className="hash-footer"><SystemStatus /><span>FIDGETMAN · BUILT FOR DEVELOPERS</span></footer>
-  </div>;
+  return (
+    <div className="hash-view">
+      <ToolTopBar section="Crypto" tool="Hash" />
+      <main className="hash-main">
+        <div className="hash-title-row">
+          <div>
+            <div className="hash-eyebrow">CRYPTO TOOL</div>
+            <h1>Hash</h1>
+            <p>Generate a cryptographic digest from text.</p>
+          </div>
+        </div>
+        <ControlPanel algorithm={algorithm} busy={busy} onAlgorithmChange={updateAlgorithm} onGenerate={generateHash} />
+        {legacy && (
+          <div className="hash-warning">
+            <strong>Legacy algorithm</strong>
+            <span>
+              {algorithm} is considered weak. Do not use it for password storage or security-sensitive integrity checks.
+            </span>
+          </div>
+        )}
+        <div className="hash-editor-grid">
+          <Input value={input} onChange={updateInput} onClear={clear} />
+          <Output algorithm={algorithm} value={output} error={error} busy={busy} copied={copied} onCopy={copyOutput} />
+        </div>
+        <InfoCallout title="Local hashing">
+          Your text is processed on this device. For security-sensitive use, choose SHA-256 or stronger; MD5 and SHA-1
+          are legacy algorithms.
+        </InfoCallout>
+      </main>
+      <footer className="hash-footer">
+        <SystemStatus />
+        <span>FIDGETMAN · BUILT FOR DEVELOPERS</span>
+      </footer>
+    </div>
+  );
 }

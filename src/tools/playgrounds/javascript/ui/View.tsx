@@ -16,7 +16,13 @@ export function View() {
   const workerRef = useRef<Worker | null>(null);
   const runIdRef = useRef(0);
 
-  useEffect(() => () => { workerRef.current?.terminate(); workerRef.current = null; }, []);
+  useEffect(
+    () => () => {
+      workerRef.current?.terminate();
+      workerRef.current = null;
+    },
+    [],
+  );
 
   function stop() {
     workerRef.current?.terminate();
@@ -44,7 +50,11 @@ export function View() {
     };
     worker.onerror = () => {
       if (id !== runIdRef.current) return;
-      setMessages((current) => [...current, { type: 'error', text: 'The JavaScript worker failed unexpectedly.' }, { type: 'done' }]);
+      setMessages((current) => [
+        ...current,
+        { type: 'error', text: 'The JavaScript worker failed unexpectedly.' },
+        { type: 'done' },
+      ]);
       setRunning(false);
       worker.terminate();
       if (workerRef.current === worker) workerRef.current = null;
@@ -58,16 +68,30 @@ export function View() {
     setMessages([]);
   }
 
-  return <div className="javascript-playground-view">
-    <ToolTopBar section="Playgrounds" tool="JavaScript" />
-    <main className="javascript-playground-main">
-      <div className="javascript-playground-title"><div><span>CODE PLAYGROUND</span><h1>JavaScript</h1><p>Write and run JavaScript snippets locally.</p></div></div>
-      <div className="javascript-playground-grid">
-        <CodeEditor code={code} running={running} onChange={setCode} onRun={run} onStop={stop} onClear={clear} />
-        <OutputPanel messages={messages} running={running} />
-      </div>
-      <InfoCallout title="Execution and safety">Code runs in a Web Worker so Stop can interrupt long-running scripts without freezing the interface. This is not a security sandbox: only run code you trust. Snippets are not saved.</InfoCallout>
-    </main>
-    <footer className="javascript-playground-footer"><SystemStatus /><span>FIDGETMAN · BUILT FOR DEVELOPERS</span></footer>
-  </div>;
+  return (
+    <div className="javascript-playground-view">
+      <ToolTopBar section="Playgrounds" tool="JavaScript" />
+      <main className="javascript-playground-main">
+        <div className="javascript-playground-title">
+          <div>
+            <span>CODE PLAYGROUND</span>
+            <h1>JavaScript</h1>
+            <p>Write and run JavaScript snippets locally.</p>
+          </div>
+        </div>
+        <div className="javascript-playground-grid">
+          <CodeEditor code={code} running={running} onChange={setCode} onRun={run} onStop={stop} onClear={clear} />
+          <OutputPanel messages={messages} running={running} />
+        </div>
+        <InfoCallout title="Execution and safety">
+          Code runs in a Web Worker so Stop can interrupt long-running scripts without freezing the interface. This is
+          not a security sandbox: only run code you trust. Snippets are not saved.
+        </InfoCallout>
+      </main>
+      <footer className="javascript-playground-footer">
+        <SystemStatus />
+        <span>FIDGETMAN · BUILT FOR DEVELOPERS</span>
+      </footer>
+    </div>
+  );
 }

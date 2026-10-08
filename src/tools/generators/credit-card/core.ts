@@ -6,7 +6,12 @@ export type TestCard = { provider: CardProvider; number: string; expiry: string;
 const TEST_CARDS: Record<CardProvider, Omit<TestCard, 'provider'>> = {
   Visa: { number: '4242 4242 4242 4242', expiry: '12/34', cvc: '123', source: 'Stripe test card documentation' },
   Mastercard: { number: '5555 5555 5555 4444', expiry: '12/34', cvc: '123', source: 'Stripe test card documentation' },
-  'American Express': { number: '3782 822463 10005', expiry: '12/34', cvc: '1234', source: 'Stripe test card documentation' },
+  'American Express': {
+    number: '3782 822463 10005',
+    expiry: '12/34',
+    cvc: '1234',
+    source: 'Stripe test card documentation',
+  },
   Discover: { number: '6011 1111 1111 1117', expiry: '12/34', cvc: '123', source: 'Stripe test card documentation' },
 };
 

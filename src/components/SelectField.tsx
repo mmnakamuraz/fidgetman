@@ -14,14 +14,33 @@ type SelectFieldProps<T extends string> = {
   className?: string;
 };
 
-export function SelectField<T extends string>({ value, options, onChange, ariaLabel, label, disabled = false, className = '' }: SelectFieldProps<T>) {
-  return <div className={`select-field ${className}`.trim()}>
-    {label && <span className="select-field-label">{label}</span>}
-    <span className="select-field-control">
-      <select aria-label={ariaLabel} value={value} disabled={disabled} onChange={(event) => onChange(event.target.value as T)}>
-        {options.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
-      </select>
-      <ChevronDown className="select-field-chevron" size={15} aria-hidden="true" />
-    </span>
-  </div>;
+export function SelectField<T extends string>({
+  value,
+  options,
+  onChange,
+  ariaLabel,
+  label,
+  disabled = false,
+  className = '',
+}: SelectFieldProps<T>) {
+  return (
+    <div className={`select-field ${className}`.trim()}>
+      {label && <span className="select-field-label">{label}</span>}
+      <span className="select-field-control">
+        <select
+          aria-label={ariaLabel}
+          value={value}
+          disabled={disabled}
+          onChange={(event) => onChange(event.target.value as T)}
+        >
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+        <ChevronDown className="select-field-chevron" size={15} aria-hidden="true" />
+      </span>
+    </div>
+  );
 }

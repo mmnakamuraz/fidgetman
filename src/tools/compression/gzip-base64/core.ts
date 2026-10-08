@@ -71,9 +71,10 @@ async function transformBytes(bytes: Uint8Array, format: 'gzip' | 'gunzip'): Pro
       controller.close();
     },
   });
-  const stream = format === 'gzip'
-    ? input.pipeThrough(new (getCompressionStream())('gzip'))
-    : input.pipeThrough(new (getDecompressionStream())('gzip'));
+  const stream =
+    format === 'gzip'
+      ? input.pipeThrough(new (getCompressionStream())('gzip'))
+      : input.pipeThrough(new (getDecompressionStream())('gzip'));
   return readStream(stream, format === 'gunzip' ? MAX_DECOMPRESSED_BYTES : Infinity);
 }
 

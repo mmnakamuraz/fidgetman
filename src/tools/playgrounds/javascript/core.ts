@@ -12,11 +12,18 @@ export function formatValue(value: unknown): string {
   if (typeof value === 'undefined') return 'undefined';
   if (typeof value === 'bigint') return `${value}n`;
   try {
-    const serialized = JSON.stringify(value, (_key, item: unknown) => typeof item === 'bigint' ? `${item}n` : item, 2);
+    const serialized = JSON.stringify(
+      value,
+      (_key, item: unknown) => (typeof item === 'bigint' ? `${item}n` : item),
+      2,
+    );
     return serialized === undefined ? String(value) : serialized;
   } catch {
-    try { return String(value); }
-    catch { return '[Unserializable value]'; }
+    try {
+      return String(value);
+    } catch {
+      return '[Unserializable value]';
+    }
   }
 }
 

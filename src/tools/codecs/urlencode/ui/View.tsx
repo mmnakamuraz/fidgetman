@@ -55,17 +55,38 @@ export function View() {
     setOutput('');
   }
 
-  return <div className="urlencode-view">
-    <ToolTopBar section="Codecs" tool="URLencode" />
-    <main className="urlencode-main">
-      <div className="urlencode-title-row"><div><div className="urlencode-eyebrow">CODEC TOOL</div><h1>URLencode</h1><p>Encode and decode a string as a URL component.</p></div></div>
-      <ControlPanel mode={mode} onModeChange={changeMode} onConvert={convert} />
-      <div className="urlencode-editor-grid">
-        <Input mode={mode} value={input} onChange={(value) => { setInput(value); setError(''); }} onClear={clear} />
-        <Output mode={mode} value={output} error={error} copied={copied} onCopy={copyOutput} />
-      </div>
-      <InfoCallout title="Single URL component">This encodes one string, not a URL or key/value query string. Spaces are encoded as %20.</InfoCallout>
-    </main>
-    <footer className="urlencode-footer"><SystemStatus /><span>FIDGETMAN · BUILT FOR DEVELOPERS</span></footer>
-  </div>;
+  return (
+    <div className="urlencode-view">
+      <ToolTopBar section="Codecs" tool="URLencode" />
+      <main className="urlencode-main">
+        <div className="urlencode-title-row">
+          <div>
+            <div className="urlencode-eyebrow">CODEC TOOL</div>
+            <h1>URLencode</h1>
+            <p>Encode and decode a string as a URL component.</p>
+          </div>
+        </div>
+        <ControlPanel mode={mode} onModeChange={changeMode} onConvert={convert} />
+        <div className="urlencode-editor-grid">
+          <Input
+            mode={mode}
+            value={input}
+            onChange={(value) => {
+              setInput(value);
+              setError('');
+            }}
+            onClear={clear}
+          />
+          <Output mode={mode} value={output} error={error} copied={copied} onCopy={copyOutput} />
+        </div>
+        <InfoCallout title="Single URL component">
+          This encodes one string, not a URL or key/value query string. Spaces are encoded as %20.
+        </InfoCallout>
+      </main>
+      <footer className="urlencode-footer">
+        <SystemStatus />
+        <span>FIDGETMAN · BUILT FOR DEVELOPERS</span>
+      </footer>
+    </div>
+  );
 }

@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { createClipboardSlots, createClipboardState, saveToSlot, updateClipboardSlot, updateClipboardText } from './core';
+import {
+  createClipboardSlots,
+  createClipboardState,
+  saveToSlot,
+  updateClipboardSlot,
+  updateClipboardText,
+} from './core';
 
 describe('clipboard session state', () => {
   it('starts empty and in memory', () => {

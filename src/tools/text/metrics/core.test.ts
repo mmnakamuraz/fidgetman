@@ -3,7 +3,13 @@ import { getTextMetrics } from './core';
 
 describe('getTextMetrics', () => {
   it('returns zero counts for empty text', () => {
-    expect(getTextMetrics('')).toEqual({ characterCount: 0, wordCount: 0, newlineCount: 0, mostRepeatedWord: null, mostRepeatedWordCount: 0 });
+    expect(getTextMetrics('')).toEqual({
+      characterCount: 0,
+      wordCount: 0,
+      newlineCount: 0,
+      mostRepeatedWord: null,
+      mostRepeatedWordCount: 0,
+    });
   });
 
   it('counts Unicode code points, words, and newlines', () => {

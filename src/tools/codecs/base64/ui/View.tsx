@@ -55,17 +55,38 @@ export function View() {
     setOutput('');
   }
 
-  return <div className="base64-view">
-    <ToolTopBar section="Codecs" tool="Base64" />
-    <main className="base64-main">
-      <div className="base64-title-row"><div><div className="base64-eyebrow">CODEC TOOL</div><h1>Base64</h1><p>Encode and decode UTF-8 strings with Base64.</p></div></div>
-      <ControlPanel mode={mode} onModeChange={changeMode} onConvert={convert} />
-      <div className="base64-editor-grid">
-        <Input mode={mode} value={input} onChange={(value) => { setInput(value); setError(''); }} onClear={clear} />
-        <Output mode={mode} value={output} error={error} copied={copied} onCopy={copyOutput} />
-      </div>
-      <InfoCallout title="UTF-8 text">Unicode characters are converted to UTF-8 bytes before Base64 encoding.</InfoCallout>
-    </main>
-    <footer className="base64-footer"><SystemStatus /><span>FIDGETMAN · BUILT FOR DEVELOPERS</span></footer>
-  </div>;
+  return (
+    <div className="base64-view">
+      <ToolTopBar section="Codecs" tool="Base64" />
+      <main className="base64-main">
+        <div className="base64-title-row">
+          <div>
+            <div className="base64-eyebrow">CODEC TOOL</div>
+            <h1>Base64</h1>
+            <p>Encode and decode UTF-8 strings with Base64.</p>
+          </div>
+        </div>
+        <ControlPanel mode={mode} onModeChange={changeMode} onConvert={convert} />
+        <div className="base64-editor-grid">
+          <Input
+            mode={mode}
+            value={input}
+            onChange={(value) => {
+              setInput(value);
+              setError('');
+            }}
+            onClear={clear}
+          />
+          <Output mode={mode} value={output} error={error} copied={copied} onCopy={copyOutput} />
+        </div>
+        <InfoCallout title="UTF-8 text">
+          Unicode characters are converted to UTF-8 bytes before Base64 encoding.
+        </InfoCallout>
+      </main>
+      <footer className="base64-footer">
+        <SystemStatus />
+        <span>FIDGETMAN · BUILT FOR DEVELOPERS</span>
+      </footer>
+    </div>
+  );
 }

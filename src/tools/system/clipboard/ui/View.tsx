@@ -51,15 +51,45 @@ export function View() {
     }
   }
 
-  return <div className="clipboard-view">
-    <ToolTopBar section="System" tool="Clipboard" status="In-memory only" />
-    <main className="clipboard-main">
-      <div className="clipboard-title"><div><div className="clipboard-page-eyebrow">SYSTEM TOOL</div><h1>Clipboard</h1><p>View and temporarily manage text from your system clipboard.</p></div></div>
-      <ClipboardPanel currentText={currentText} hasRead={hasRead} slots={slots} busy={busy} onRefresh={refreshClipboard} onSave={updateSlot} onSend={sendSlot} />
-      {error && <p className="clipboard-feedback clipboard-error" role="alert">{error}</p>}
-      {message && <p className="clipboard-feedback clipboard-success" role="status">{message}</p>}
-      <InfoCallout title="Private and temporary">Clipboard text and the five slots stay in memory for this app session only and are not saved after closing the app. Reading the system clipboard happens only when you press Refresh.</InfoCallout>
-    </main>
-    <footer className="clipboard-footer"><SystemStatus /><span>FIDGETMAN · BUILT FOR DEVELOPERS</span></footer>
-  </div>;
+  return (
+    <div className="clipboard-view">
+      <ToolTopBar section="System" tool="Clipboard" status="In-memory only" />
+      <main className="clipboard-main">
+        <div className="clipboard-title">
+          <div>
+            <div className="clipboard-page-eyebrow">SYSTEM TOOL</div>
+            <h1>Clipboard</h1>
+            <p>View and temporarily manage text from your system clipboard.</p>
+          </div>
+        </div>
+        <ClipboardPanel
+          currentText={currentText}
+          hasRead={hasRead}
+          slots={slots}
+          busy={busy}
+          onRefresh={refreshClipboard}
+          onSave={updateSlot}
+          onSend={sendSlot}
+        />
+        {error && (
+          <p className="clipboard-feedback clipboard-error" role="alert">
+            {error}
+          </p>
+        )}
+        {message && (
+          <p className="clipboard-feedback clipboard-success" role="status">
+            {message}
+          </p>
+        )}
+        <InfoCallout title="Private and temporary">
+          Clipboard text and the five slots stay in memory for this app session only and are not saved after closing the
+          app. Reading the system clipboard happens only when you press Refresh.
+        </InfoCallout>
+      </main>
+      <footer className="clipboard-footer">
+        <SystemStatus />
+        <span>FIDGETMAN · BUILT FOR DEVELOPERS</span>
+      </footer>
+    </div>
+  );
 }

@@ -37,12 +37,21 @@ export function View() {
         setInputTab('output');
       }
     };
-    worker.onerror = () => { setBusy(false); setError('The conversion worker stopped unexpectedly. Please try again.'); };
-    return () => { worker.terminate(); workerRef.current = null; };
+    worker.onerror = () => {
+      setBusy(false);
+      setError('The conversion worker stopped unexpectedly. Please try again.');
+    };
+    return () => {
+      worker.terminate();
+      workerRef.current = null;
+    };
   }, []);
 
   function runConversion() {
-    if (!input.trim()) { setError('Paste some content to get started.'); return; }
+    if (!input.trim()) {
+      setError('Paste some content to get started.');
+      return;
+    }
     const id = ++requestId.current;
     setBusy(true);
     setError('');
@@ -50,7 +59,10 @@ export function View() {
   }
 
   function runFormat(nextMode: FormatMode) {
-    if (!input.trim()) { setError('Paste some content to get started.'); return; }
+    if (!input.trim()) {
+      setError('Paste some content to get started.');
+      return;
+    }
     setMode(nextMode);
     const id = ++requestId.current;
     setBusy(true);
@@ -68,17 +80,56 @@ export function View() {
     }
   }
 
-  return <div className="transform-view">
-    <ToolTopBar section="Serialization" tool="Transformations" />
-    <main className="transform-main">
-      <div className="transform-title-row"><div><div className="transform-eyebrow">SERIALIZATION TOOL</div><h1>Transformations</h1><p>Convert structured data between formats with precision.</p></div><button className="transform-help-button" title="Tool information"><Sparkles size={15} /></button></div>
-      <ControlPanel source={source} target={target} mode={mode} busy={busy} onSourceChange={setSource} onTargetChange={setTarget} onFormat={runFormat} onConvert={runConversion} />
-      <div className="transform-editor-grid">
-        <Input input={input} setInput={setInput} inputTab={inputTab} setInputTab={setInputTab} outputLines={output ? output.split('\n').length : 0} clearError={() => setError('')} />
-        <Output output={output} error={error} target={target} copied={copied} onCopy={copyOutput} clearError={() => setError('')} />
-      </div>
-      <InfoCallout title="Quick tip">Conversion runs locally in a background worker, so large inputs won't block editing.</InfoCallout>
-    </main>
-    <footer className="transform-footer"><SystemStatus /><span>FIDGETMAN · BUILT FOR DEVELOPERS</span></footer>
-  </div>;
+  return (
+    <div className="transform-view">
+      <ToolTopBar section="Serialization" tool="Transformations" />
+      <main className="transform-main">
+        <div className="transform-title-row">
+          <div>
+            <div className="transform-eyebrow">SERIALIZATION TOOL</div>
+            <h1>Transformations</h1>
+            <p>Convert structured data between formats with precision.</p>
+          </div>
+          <button className="transform-help-button" title="Tool information">
+            <Sparkles size={15} />
+          </button>
+        </div>
+        <ControlPanel
+          source={source}
+          target={target}
+          mode={mode}
+          busy={busy}
+          onSourceChange={setSource}
+          onTargetChange={setTarget}
+          onFormat={runFormat}
+          onConvert={runConversion}
+        />
+        <div className="transform-editor-grid">
+          <Input
+            input={input}
+            setInput={setInput}
+            inputTab={inputTab}
+            setInputTab={setInputTab}
+            outputLines={output ? output.split('\n').length : 0}
+            clearError={() => setError('')}
+          />
+          <Output
+            output={output}
+            error={error}
+            target={target}
+            copied={copied}
+            onCopy={copyOutput}
+            clearError={() => setError('')}
+          />
+        </div>
+        <InfoCallout title="Quick tip">
+          Conversion runs locally in a background worker, so large inputs won't block editing.
+        </InfoCallout>
+      </main>
+      <footer className="transform-footer">
+        <SystemStatus />
+        <span>FIDGETMAN · BUILT FOR DEVELOPERS</span>
+      </footer>
+    </div>
+  );
 }

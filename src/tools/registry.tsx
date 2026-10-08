@@ -3,7 +3,10 @@ import type { SectionManifest, ToolManifest } from './manifest.types';
 
 declare global {
   interface ImportMeta {
-    glob<T = unknown>(pattern: string, options?: { eager?: boolean }): Record<string, T> | Record<string, () => Promise<T>>;
+    glob<T = unknown>(
+      pattern: string,
+      options?: { eager?: boolean },
+    ): Record<string, T> | Record<string, () => Promise<T>>;
   }
 }
 

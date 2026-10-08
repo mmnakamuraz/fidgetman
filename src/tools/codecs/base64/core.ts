@@ -14,7 +14,10 @@ export function encodeBase64(input: string): string {
 
 export function decodeBase64(input: string): string {
   const normalized = input.replace(/[\t\n\f\r ]/g, '');
-  if (normalized.length % 4 !== 0 || !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(normalized)) {
+  if (
+    normalized.length % 4 !== 0 ||
+    !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(normalized)
+  ) {
     throw new Error('Input is not valid Base64. Check the characters and padding.');
   }
 

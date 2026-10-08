@@ -33,9 +33,17 @@ export function summarizeDiff(leftText: string, rightText: string): DiffSummary 
   let removed = 0;
   let unchanged = 0;
   while (i < left.length && j < right.length) {
-    if (left[i] === right[j]) { unchanged++; i++; j++; }
-    else if (rows[i + 1][j] >= rows[i][j + 1]) { removed++; i++; }
-    else { added++; j++; }
+    if (left[i] === right[j]) {
+      unchanged++;
+      i++;
+      j++;
+    } else if (rows[i + 1][j] >= rows[i][j + 1]) {
+      removed++;
+      i++;
+    } else {
+      added++;
+      j++;
+    }
   }
   removed += left.length - i;
   added += right.length - j;

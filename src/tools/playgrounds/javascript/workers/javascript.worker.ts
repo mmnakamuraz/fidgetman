@@ -8,7 +8,10 @@ self.onmessage = async (event: MessageEvent<{ id: number; code: string }>) => {
   const scopedConsole = { ...originalConsole } as Console;
   for (const level of consoleLevels) {
     scopedConsole[level] = (...values: unknown[]) => {
-      self.postMessage({ id, message: { type: 'console', level, text: formatArguments(values) } satisfies PlaygroundMessage });
+      self.postMessage({
+        id,
+        message: { type: 'console', level, text: formatArguments(values) } satisfies PlaygroundMessage,
+      });
     };
   }
   globalThis.console = scopedConsole;
