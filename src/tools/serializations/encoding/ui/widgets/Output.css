@@ -1,4 +1,4 @@
-.urlencode-panel {
+.encoding-panel {
   min-width: 0;
   height: 360px;
   display: flex;
@@ -8,7 +8,7 @@
   background: #15171d;
   overflow: hidden;
 }
-.urlencode-panel-heading {
+.encoding-panel-heading {
   height: 43px;
   flex: 0 0 43px;
   border-bottom: 1px solid #292c35;
@@ -17,7 +17,7 @@
   align-items: center;
   justify-content: space-between;
 }
-.urlencode-panel-label {
+.encoding-panel-label {
   display: flex;
   align-items: center;
   gap: 7px;
@@ -25,10 +25,10 @@
   font-size: 11px;
   font-weight: 600;
 }
-.urlencode-panel-label svg {
+.encoding-panel-label svg {
   color: #75cfad;
 }
-.urlencode-small-tool {
+.encoding-small-tool {
   width: 25px;
   height: 25px;
   display: grid;
@@ -39,15 +39,15 @@
   color: #8a8e98;
   cursor: pointer;
 }
-.urlencode-small-tool:hover:not(:disabled) {
+.encoding-small-tool:hover:not(:disabled) {
   background: #272a32;
   color: #d9dbe1;
 }
-.urlencode-small-tool:disabled {
+.encoding-small-tool:disabled {
   opacity: 0.35;
   cursor: default;
 }
-.urlencode-panel-status {
+.encoding-panel-status {
   height: 30px;
   flex: 0 0 30px;
   border-top: 1px solid #242730;
@@ -58,12 +58,12 @@
   color: #666c77;
   font-size: 9px;
 }
-.urlencode-result-body {
+.encoding-result-body {
   flex: 1;
   min-height: 0;
   overflow: auto;
 }
-.urlencode-result-body pre {
+.encoding-result-body pre {
   width: 100%;
   height: 100%;
   min-height: 0;
@@ -81,8 +81,8 @@
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
-.urlencode-empty,
-.urlencode-error {
+.encoding-empty,
+.encoding-error {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -94,19 +94,19 @@
   color: #737883;
   font-size: 11px;
 }
-.urlencode-empty strong {
+.encoding-empty strong {
   color: #aeb1ba;
   font-size: 12px;
   font-weight: 500;
 }
-.urlencode-error {
+.encoding-error {
   color: #e6a0a0;
 }
-.urlencode-error strong {
+.encoding-error strong {
   font-size: 12px;
   color: #efb2b2;
 }
-.urlencode-error span {
+.encoding-error span {
   max-width: 400px;
   overflow-wrap: anywhere;
 }

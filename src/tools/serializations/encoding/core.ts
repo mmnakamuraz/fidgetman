@@ -1,6 +1,7 @@
-const BASE64_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+export type Encoding = 'base64' | 'urlencode';
+export type Mode = 'encode' | 'decode';
 
-export function encodeBase64(input: string): string {
+function encodeBase64(input: string): string {
   const bytes = new TextEncoder().encode(input);
   let binary = '';
   const chunkSize = 0x8000;
@@ -12,7 +13,7 @@ export function encodeBase64(input: string): string {
   return btoa(binary);
 }
 
-export function decodeBase64(input: string): string {
+function decodeBase64(input: string): string {
   const normalized = input.replace(/[\t\n\f\r ]/g, '');
   if (
     normalized.length % 4 !== 0 ||
@@ -31,8 +32,10 @@ export function decodeBase64(input: string): string {
   }
 }
 
-export function transformBase64(input: string, mode: 'encode' | 'decode'): string {
+export function transformEncoding(input: string, encoding: Encoding, mode: Mode): string {
+  if (encoding === 'urlencode') {
+    return mode === 'encode' ? encodeURIComponent(input) : decodeURIComponent(input);
+  }
+
   return mode === 'encode' ? encodeBase64(input) : decodeBase64(input);
 }
-
-export const BASE64_ALPHABET_LENGTH = BASE64_ALPHABET.length;

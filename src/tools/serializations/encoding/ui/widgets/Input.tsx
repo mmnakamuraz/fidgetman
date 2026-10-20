@@ -1,25 +1,27 @@
 import { FileInput, RotateCcw } from 'lucide-react';
-import type { Mode } from './ControlPanel';
+import type { Encoding, Mode } from '../../core';
 import './Input.css';
 
 type InputProps = {
+  encoding: Encoding;
   mode: Mode;
   value: string;
   onChange: (value: string) => void;
   onClear: () => void;
 };
 
-export function Input({ mode, value, onChange, onClear }: InputProps) {
-  const label = mode === 'encode' ? 'Plain text' : 'Base64';
-  const placeholder = mode === 'encode' ? 'Type or paste text here…' : 'Paste Base64 here…';
+export function Input({ encoding, mode, value, onChange, onClear }: InputProps) {
+  const encodingName = encoding === 'base64' ? 'Base64' : 'URL-encoded';
+  const label = mode === 'encode' ? 'Plain text' : encodingName;
+  const placeholder = mode === 'encode' ? 'Type or paste text here…' : `Paste ${encodingName} here…`;
 
   return (
-    <section className="base64-panel">
-      <div className="base64-panel-heading">
-        <div className="base64-panel-label">
+    <section className="encoding-panel">
+      <div className="encoding-panel-heading">
+        <div className="encoding-panel-label">
           <FileInput size={14} /> {label}
         </div>
-        <button className="base64-small-tool" title="Clear input" onClick={onClear}>
+        <button className="encoding-small-tool" title="Clear input" onClick={onClear}>
           <RotateCcw size={13} />
         </button>
       </div>
@@ -30,7 +32,7 @@ export function Input({ mode, value, onChange, onClear }: InputProps) {
         placeholder={placeholder}
         aria-label={`${label} input`}
       />
-      <div className="base64-panel-status">
+      <div className="encoding-panel-status">
         <span>{new Intl.NumberFormat().format(new Blob([value]).size)} bytes</span>
         <span>UTF-8</span>
       </div>

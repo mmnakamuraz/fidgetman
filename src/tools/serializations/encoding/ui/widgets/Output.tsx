@@ -1,8 +1,9 @@
 import { Check, Clipboard, FileOutput } from 'lucide-react';
-import type { Mode } from './ControlPanel';
+import type { Encoding, Mode } from '../../core';
 import './Output.css';
 
 type OutputProps = {
+  encoding: Encoding;
   mode: Mode;
   value: string;
   error: string;
@@ -10,35 +11,35 @@ type OutputProps = {
   onCopy: () => void;
 };
 
-export function Output({ mode, value, error, copied, onCopy }: OutputProps) {
-  const label = mode === 'encode' ? 'URL-encoded text' : 'Decoded text';
+export function Output({ encoding, mode, value, error, copied, onCopy }: OutputProps) {
+  const label = mode === 'encode' ? (encoding === 'base64' ? 'Base64' : 'URL-encoded') : 'Decoded text';
 
   return (
-    <section className="urlencode-panel urlencode-result-panel">
-      <div className="urlencode-panel-heading">
-        <div className="urlencode-panel-label">
+    <section className="encoding-panel encoding-result-panel">
+      <div className="encoding-panel-heading">
+        <div className="encoding-panel-label">
           <FileOutput size={14} /> {label}
         </div>
-        <button className="urlencode-small-tool" title="Copy result" onClick={onCopy} disabled={!value}>
+        <button className="encoding-small-tool" title="Copy result" onClick={onCopy} disabled={!value}>
           {copied ? <Check size={13} /> : <Clipboard size={13} />}
         </button>
       </div>
-      <div className="urlencode-result-body">
+      <div className="encoding-result-body">
         {error ? (
-          <div className="urlencode-error">
+          <div className="encoding-error">
             <strong>Unable to convert input</strong>
             <span>{error}</span>
           </div>
         ) : value !== '' ? (
           <pre>{value}</pre>
         ) : (
-          <div className="urlencode-empty">
+          <div className="encoding-empty">
             <strong>Your result will appear here</strong>
             <span>Choose an operation and click Convert.</span>
           </div>
         )}
       </div>
-      <div className="urlencode-panel-status">
+      <div className="encoding-panel-status">
         <span>{value ? 'RESULT READY' : 'AWAITING INPUT'}</span>
         <span>{new Intl.NumberFormat().format(new Blob([value]).size)} bytes</span>
         <span>{copied ? 'Copied' : 'UTF-8'}</span>
