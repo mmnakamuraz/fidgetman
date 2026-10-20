@@ -67,13 +67,13 @@ export function View() {
 
   return (
     <div className="encoding-view">
-      <ToolTopBar section="Serialization" tool="Encoding" />
+      <ToolTopBar section="Codecs" tool="Text Encoding" />
       <main className="encoding-main">
         <div className="encoding-title-row">
           <div>
-            <div className="encoding-eyebrow">SERIALIZATION TOOL</div>
-            <h1>Encoding</h1>
-            <p>Encode and decode strings with Base64 or URL encoding.</p>
+            <div className="encoding-eyebrow">CODEC TOOL</div>
+            <h1>Text Encoding</h1>
+            <p>Encode and decode text with Base64 or URL encoding.</p>
           </div>
         </div>
         <ControlPanel
