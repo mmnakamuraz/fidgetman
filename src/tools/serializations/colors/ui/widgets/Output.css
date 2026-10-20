@@ -1,0 +1,33 @@
+.colors-output-panel {
+  min-width: 0;
+  border: 1px solid #292c34;
+  border-radius: 7px;
+  background: #15171d;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.colors-output-panel .colors-panel-heading {
+  flex: 0 0 41px;
+}
+.colors-preview-wrap {
+  padding: 16px 16px 12px;
+}
+.colors-output-values {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 16px 15px;
+}
+.colors-copy-status {
+  min-height: 35px;
+  padding: 0 13px;
+  border-top: 1px solid #292c34;
+  display: flex;
+  align-items: center;
+  color: #777d88;
+  font-size: 10px;
+}
+.colors-copy-status.has-error {
+  color: #eda19a;
+}

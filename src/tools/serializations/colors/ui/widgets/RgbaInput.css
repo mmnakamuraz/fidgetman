@@ -1,0 +1,37 @@
+.colors-field {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.colors-field-label {
+  color: #777c87;
+  font-size: 9px;
+  letter-spacing: 1.1px;
+}
+.colors-field input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 37px;
+  padding: 0 11px;
+  border: 1px solid #30333c;
+  border-radius: 5px;
+  outline: none;
+  background: #111318;
+  color: #cdd0d6;
+  font:
+    11px ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+}
+.colors-field input:focus {
+  border-color: #527568;
+}
+.colors-field input.colors-field-invalid {
+  border-color: #8b514d;
+}
+.colors-field-hint {
+  color: #626773;
+  font-size: 9px;
+}

@@ -1,0 +1,44 @@
+.colors-display-row {
+  min-width: 0;
+  min-height: 42px;
+  padding: 0 8px 0 11px;
+  border: 1px solid #30333c;
+  border-radius: 5px;
+  background: #111318;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.colors-display-label {
+  color: #777c87;
+  font-size: 9px;
+  letter-spacing: 0.8px;
+}
+.colors-display-row code {
+  min-width: 0;
+  color: #cdd0d6;
+  font:
+    11px ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+  overflow-wrap: anywhere;
+}
+.colors-copy-button {
+  width: 27px;
+  height: 27px;
+  margin-left: auto;
+  flex: 0 0 27px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  color: #797f8a;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.colors-copy-button:hover {
+  border-color: #30333c;
+  background: #252830;
+  color: #c5c8cf;
+}
